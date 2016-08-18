@@ -1,12 +1,18 @@
 <?php
 
-$str = "RX packets:950381 errors:4 :) dropped:3 overruns:2 frame:1. ";
-preg_match_all('/[0-9]+/', $str, $arr);
-preg_match_all('/:\)/', $str, $arr1);
-if ($arr[0] > 1000 and $arr1[0] == null) echo 'Сеть есть', '<br>';
-elseif ($arr1[0] != null) smile();
-
-function smile() {
+function infopac($str)
+{
+    preg_match_all('/[0-9]+/', $str, $arr);
+    preg_match_all('/:\)/', $str, $arr1);
+//    echo '<pre>';
+//    print_r($arr);
+//    print_r($arr1);
+//    echo '</pre>';
+    if ($arr[0][0] > 1000 and $arr1[0][0] == null) echo 'Сеть есть', '<br>';
+    elseif ($arr1[0][0] != null) smile();
+}
+function smile()
+{
     echo '____________888888888888888____________', '<br>';
     echo '_________888888888888888888888_________', '<br>';
     echo '_______8888888888888888888888888_______', '<br>';
@@ -28,3 +34,5 @@ function smile() {
     echo '____________888888888888888____________', '<br>';
     echo '_______________________________________', '<br>';
 }
+$str = "RX packets:9876 er:)rors:4 dropped:3 overruns:2 frame:1. ";
+infopac($str);
