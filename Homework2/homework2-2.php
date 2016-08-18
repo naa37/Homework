@@ -1,6 +1,7 @@
 <?php
 
-function calculate ($arr, $str) {
+function calculate ($arr, $str)
+{
     if (!proverka($arr, $str)) return;
     switch ($str) {
         case '+': {
@@ -8,13 +9,13 @@ function calculate ($arr, $str) {
             foreach ($arr as $item) {
                 $result = $result + $item;
             }
-            echo $result;
         };
             break;
         case '-': {
-            $result = 0;
-            $result = $arr[0] - $arr[1];
-            echo $result;
+            $result = $arr[0];
+            for ($i = 1; $i < count($arr); $i++){
+                $result = $result - $arr[$i];
+            }
         };
             break;
         case '*': {
@@ -22,23 +23,26 @@ function calculate ($arr, $str) {
             foreach ($arr as $item) {
                 $result = $result * $item;
             }
-            echo $result;
         };
             break;
         case '/': {
-            $result = 0;
-            $result = $arr[0] / $arr[1];
-            echo $result;
+            $result = $arr[0];
+            for ($i = 1; $i < count($arr); $i++){
+                $result = $result / $arr[$i];
+            }
         };
             break;
         case '%': {
-            $result = 0;
-            $result = $arr[0] % $arr[1];
-            echo $result;
+            $result = $arr[0];
+            for ($i = 1; $i < count($arr); $i++){
+                $result = $result % $arr[$i];
+            }
         }
     }
+    echo $result;
 }
-function proverka($arr, $str) {
+function proverka($arr, $str)
+{
     foreach ($arr as $item) {
         if (!is_numeric($item)) {
             echo 'Некоректные значения для арифметического действия';
@@ -46,19 +50,13 @@ function proverka($arr, $str) {
         }
     }
     switch ($str) {
-        case '+';
-        case '*': {
+        case '+':
+        case '*':
+        case '-':
+        case '/':
+        case '%': {
             if (count($arr) < 2) {
                 echo 'Для этого действия необходимо не меньше 2-ух аргументов!';
-                return false;
-            }
-        };
-            break;
-        case '%';
-        case '/';
-        case '-': {
-            if (count($arr) != 2) {
-                echo 'Для этого действия необходимо 2 аргумента!';
                 return false;
             }
         };
@@ -70,6 +68,6 @@ function proverka($arr, $str) {
     }
     return true;
 }
-$array = [10, 4.5];
-$string = '+';
+$array = [10, 5, 1];
+$string = '-';
 calculate($array, $string);
