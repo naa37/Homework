@@ -1,6 +1,7 @@
 <?php
 
-function calculate ($str) {
+function calculate ($str)
+{
     $arr = func_get_args();
     unset($arr[0]);
     if (!proverka($str, $arr)) return;
@@ -40,9 +41,17 @@ function calculate ($str) {
             }
         }
     }
+    foreach ($arr as $item) {
+        if ($item == end($arr)) {
+            echo $item, ' = ';
+        } else {
+            echo $item, " $str ";
+        }
+    }
     echo $result;
 }
-function proverka($str, $arr) {
+function proverka($str, $arr)
+{
     foreach ($arr as $item) {
         if (!is_numeric($item)) {
             echo 'Некоректные значения для арифметического действия';
@@ -50,10 +59,10 @@ function proverka($str, $arr) {
         }
     }
     switch ($str) {
-        case '+';
-        case '*';
-        case '-';
-        case '/';
+        case '+':
+        case '*':
+        case '-':
+        case '/':
         case '%': {
             if (count($arr) < 2) {
                 echo 'Для этого действия необходимо не меньше 2-ух аргументов!';
@@ -68,4 +77,4 @@ function proverka($str, $arr) {
     }
     return true;
 }
-calculate('+', 1, 2, 3, 5.2);
+calculate('+', 1, 2, 3, 5.2, 5);
