@@ -44,7 +44,7 @@ function calculate ($arr, $str)
 function proverka($arr, $str)
 {
     foreach ($arr as $item) {
-        if (!is_numeric($item)) {
+        if (!is_int($item) and !is_float($item)) {
             echo 'Некоректные значения для арифметического действия';
             return false;
         }
